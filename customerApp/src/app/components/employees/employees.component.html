@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+<form (ngSubmit)="insertData()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      [(ngModel)]="employee.name"
+      placeholder=""
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      class="form-control"
+      [(ngModel)]="employee.email"
+      placeholder=""
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="salary">Salary</label>
+    <input
+      type="text"
+      name="salary"
+      class="form-control"
+      [(ngModel)]="employee.salary"
+      placeholder=""
+    />
+  </div>
+
+  <button class="btn btn-dark btn-sm mt-4 mb-4">Submit</button>
+</form>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">№</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Salary</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <th scope="row">{{ emp.id }}</th>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.salary }}$</td>
+        <td>
+          <div class="d-flex">
+            <button class="btn btn-danger btn-sm" (click)="deleteData(emp.id)">
+              Delete
+            </button>
+            <button
+              class="btn btn-warning btn-sm mx-2"
+              routerLink="edit/{{ emp.id }}"
+            >
+              Edit
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
